@@ -1,14 +1,48 @@
 <ion-header>
   <ion-navbar>
-    <ion-title>
-      Ionic Blank
-    </ion-title>
+    <ion-grid style="background-color: #eb6060">
+      <ion-row>
+        <ion-col col-3>
+          <div>
+            <a id='idHomePage'>
+              <img src='assets/imgs/homepage.png'>
+            </a>
+          </div>
+        </ion-col>
+        <ion-col col-3>
+          <div class='nav-bar-item'>
+            <a>
+              <img src='assets/imgs/new.png'>
+            </a>
+            <br>
+            <span>Mới</span>
+          </div>
+        </ion-col>
+        <ion-col col-3>
+          <div class='nav-bar-item'>
+            <img src='assets/imgs/hot.png'>
+            <br/>
+            <span>Hot</span>
+          </div>
+        </ion-col>
+        <ion-col col-3>
+          <div class='nav-bar-item'>
+            <img src='assets/imgs/search.png'>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content>
+  <div id='hotfirstnew'>
+    <a (click)="ihi">
+      <img src='http://nongnghiepvietnam.edu.vn/wp-content/uploads/rau-giu-nuoc.jpg' />
+    </a>
+    <a>HIHI</a>
+    <ion-item>
+      <!-- <a>{{First.get("title")}}</a> -->
+    </ion-item>
+  </div>
 </ion-content>

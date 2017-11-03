@@ -20,7 +20,8 @@ export class NewsService {
 
     getTop(limit) {
         return this.http.get("http://localhost:3000/api/news/getNews/getNewsMostPopular")
-            .map(res => res.json());
+            .map(res => res.json())
+            ;
     }
 
     getTopCategories(catename, limit) {

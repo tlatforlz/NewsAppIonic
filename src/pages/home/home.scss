@@ -1,3 +1,25 @@
-page-home {
+page-home {}
 
+.nav-bar-item {
+  text-align: center;
+}
+
+ion-col:hover {
+  background-color: #e00d0d;
+}
+
+.nav-bar-item span {
+  color: white;
+  margin-left: -5px;
+}
+
+#idHomePage {
+  margin-left: 15px;
+  text-align: center;
+}
+
+ion-col {
+  border-width: 0.5px;
+  border-style: solid;
+  border-color: #e00d0d;
 }

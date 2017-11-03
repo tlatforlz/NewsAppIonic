@@ -2,8 +2,8 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 @Component({
-    selector: 'seach',
-    templateUrl: 'seach.html'
+    selector: 'search',
+    templateUrl: 'search.html'
 })
 export class SeachPage {
 
