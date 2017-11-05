@@ -23,3 +23,158 @@ ion-col {
   border-style: solid;
   border-color: #e00d0d;
 }
+
+.news_hot h2 {
+  background-color: #5c5c5c;
+  color: #FFF;
+  font-size: 17px;
+  min-height: 50px;
+  padding: 6px 6px 5px 6px;
+  text-indent: 0;
+  font-weight: bold;
+  font-family: Arial;
+  overflow: hidden;
+  margin-top: 0px !important;
+}
+
+.news_hot {
+  margin-bottom: 9px;
+  width: 100%;
+}
+
+.news_hot img {
+  width: 100%;
+  display: block;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  text-decoration: none;
+  border: 0;
+}
+
+.o_h {
+  overflow: hidden;
+}
+
+a {
+  color: #000;
+}
+
+img {
+  border: medium none;
+}
+
+.news_hot2 {
+  width: 100%;
+  overflow: hidden;
+}
+
+.news_hot2 ul li:nth-child(2n-1) {
+  clear: both;
+  margin-right: 3%;
+}
+
+.news_hot2 ul li {
+  margin-bottom: 9px;
+  width: 48.5%;
+}
+
+.fl {
+  float: left;
+}
+
+.news_hot2 ul li a {
+  display: block;
+}
+
+img {
+  border: medium none;
+}
+
+.news_hot2 img {
+  background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAE0lEQVQY02NkYGA4w4AHMI4MBQCfCQZp2z0+rgAAAABJRU5ErkJggg==) repeat scroll 0 0 transparent;
+  display: block;
+  width: 100%;
+}
+
+.news_hot2 span {
+  background-color: #ebebeb;
+  color: #555;
+  float: left;
+  font: bold 12px/17px arial;
+  width: 100%;
+}
+
+.news_hot2 ul li a h3,
+.news_hot2 ul li a h2 {
+  margin-top: 0px;
+  font-size: 12px;
+  font-family: Arial;
+  font-weight: bold;
+  color: #433333;
+  line-height: 15px;
+  padding: 3px 5px 5px 5px;
+}
+
+.news {
+  width: 100%;
+}
+
+.news li.article {
+  width: 100%;
+  display: block;
+}
+
+.news .li {
+  display: block;
+  padding: 6px 8px 10px 0;
+  overflow: hidden;
+}
+
+.news .li img {
+  width: 80px;
+  height: 62px;
+  float: left;
+  padding: 0;
+  background: #fff;
+  padding-left: 8px;
+  padding-right: 8px;
+  padding-top: 4px;
+}
+
+.news .li .title {
+  font-size: 15px;
+  font-weight: bold;
+  color: #333;
+  padding-left: 96px;
+}
+
+.news .li .time {
+  font-size: 12px;
+  color: #999;
+  margin-top: 5px;
+  display: block;
+  padding-left: 96px;
+}
+
+.wrap-vm {
+  text-align: center;
+}
+
+.view_more {
+  display: inline-block;
+  border: 1px solid #dfdfdf;
+  border-radius: 4px;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  font-weight: bold;
+  font-size: 16px;
+  color: #333;
+  text-align: center;
+  background: #ededed;
+  padding: 6px 10px;
+  margin: 15px 0;
+}

@@ -3,7 +3,9 @@ import { NavController } from 'ionic-angular';
 
 @Component({
     selector: 'news',
-    templateUrl: 'news.html'
+    templateUrl: 'news.html',
+    styles: ['news.scss']
+
 })
 export class NewsPage {
 

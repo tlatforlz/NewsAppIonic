@@ -18,11 +18,20 @@ export class NewsService {
         this.baseUrl = "http://localhost:8001/api/";
     }
 
-    getTop(limit) {
-        return this.http.get("http://localhost:3000/api/news/getNews/getNewsMostPopular")
-            .map(res => res.json())
-            ;
+    getTop() {
+        return this.http.get(this.baseUrl + "news/getNews/getNewsHomePageTop")
+            .map(res => res.json());
     }
+
+    getTop1() {
+        return this.http.get(this.baseUrl + "news/getNews/getNewsHomePageIonic")
+            .map(res => res.json());
+    }
+    getTop4() {
+        return this.http.get(this.baseUrl + "news/getNews/getNewsHomePageTop4")
+            .map(res => res.json());
+    }
+
 
     getTopCategories(catename, limit) {
 
