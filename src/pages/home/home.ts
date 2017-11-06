@@ -29,8 +29,11 @@ export class HomePage {
     window.location.reload()
   }
 
-  gotoNews() {
-    this.navCtrl.push(NewsPage);
+  gotoNews(Id) {
+    console.log(Id);
+    this.navCtrl.push(NewsPage, {
+      "NewsId": Id
+    });
   }
 
   ngOnInit() {

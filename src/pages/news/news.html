@@ -2,7 +2,7 @@
   <ion-navbar hideBackButton="true">
     <ion-grid style="background-color: #eb6060">
       <ion-row>
-        <ion-col col-3>
+        <ion-col col-3 (click)='loadHomePage()'>
           <div>
             <a id='idHomePage'>
               <img src='assets/imgs/homepage.png'>
@@ -37,20 +37,13 @@
 
 <ion-content>
   <div class='detail o_h'>
-    <div class="date1">Dink - Theo
+    <div class="date1">-Theo
       <a target="_blank" rel="nofollow" href="http://ttvn.vn" style="color:#999;">Trí Thức Trẻ</a> | 16:48 04/11/2017</div>
-    <h1>iFixit mổ bụng iPhone X: lần đầu tiên xuất hiện bảng mạch gập đôi và pin kép, cụm camera "phức tạp chưa từng thấy"</h1>
+    <h1>{{NewsDetail?.Title}}</h1>
     <div class="detailct">
-      <div>
-        <img alt="" src="http://genknews.genkcdn.vn/thumb_w/640/2017/qqj6xfsu4f4o5oxx-1509787567295-22-0-392-592-crop-1509788327583.jpeg"
-          class="detail-avatar">
-      </div>
-      <h2 class="sapo">Đây là màn mổ xẻ chi tiết thiết bị được săn đón nhất dịp cuối năm 2017 này.</h2>
 
-      <div class="clearfix adv-box " id="adm-slot-484642">
-
-
-
+      <div class="clearfix adv-box" id="adm-slot">
+        <div innerHTML="{{NewsDetail?.Content}}"></div>
       </div>
     </div>
   </div>

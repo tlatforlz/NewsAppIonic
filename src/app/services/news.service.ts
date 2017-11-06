@@ -32,6 +32,10 @@ export class NewsService {
             .map(res => res.json());
     }
 
+    getNews(Id) {
+        return this.http.get(this.baseUrl + "news/" + Id)
+            .map(res => res.json());
+    }
 
     getTopCategories(catename, limit) {
 
