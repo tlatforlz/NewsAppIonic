@@ -15,7 +15,7 @@ export class NewsService {
 
     constructor(http: Http) {
         this.http = http;
-        this.baseUrl = "http://localhost:8001/api/";
+        this.baseUrl = "http://192.168.4.110:8001/api/";
     }
 
     getTop() {
@@ -37,6 +37,15 @@ export class NewsService {
             .map(res => res.json());
     }
 
+    getFriendly(Id) {
+        return this.http.get(this.baseUrl + "news/getNews/getNewsFriendly/" + Id)
+            .map(res => res.json());
+    }
+
+    getReadMore(limit) {
+        return this.http.get(this.baseUrl + "news/getNews/getNewsHomePageTop/" + limit)
+            .map(res => res.json());
+    }
     getTopCategories(catename, limit) {
 
     }

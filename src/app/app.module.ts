@@ -7,13 +7,15 @@ import { HttpModule } from '@angular/http';
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { NewsPage } from '../pages/news/news';
+import { CategoriesPage } from '../pages/categories/categories';
 
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
-    NewsPage
+    NewsPage,
+    CategoriesPage
   ],
   imports: [
     BrowserModule,
@@ -24,7 +26,8 @@ import { NewsPage } from '../pages/news/news';
   entryComponents: [
     MyApp,
     HomePage,
-    NewsPage
+    NewsPage,
+    CategoriesPage
   ],
   providers: [
     StatusBar,

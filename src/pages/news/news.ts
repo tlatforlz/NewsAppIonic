@@ -12,6 +12,7 @@ class News {
     Author: String;
     Image: String;
     DateCreate: String;
+    OriginalLink: String;
 }
 @Component({
     selector: 'news',
@@ -22,6 +23,7 @@ class News {
 export class NewsPage {
     public NewsId: any;
     public NewsDetail: any;
+    public NewsFriend: any[] = [];
     constructor(public navCtrl: NavController, public navParams: NavParams, private NewsService: NewsService) {
         this.NewsId = navParams.get("NewsId");
         console.log(this.NewsId);
@@ -30,13 +32,20 @@ export class NewsPage {
     ngOnInit() {
         console.log(this.NewsId);
         this.NewsService.getNews(this.NewsId).subscribe(res => {
-            console.log(res);
             parseJsonToObject(res.news).then(w => {
                 this.NewsDetail = w;
                 console.log(this.NewsDetail);
             });
         });
 
+        this.NewsService.getFriendly(this.NewsId).subscribe(res => {
+            var list = res.news;
+            list.forEach(k => {
+                parseJsonToObject(k).then(w => {
+                    this.NewsFriend.push(w);
+                });
+            });
+        });
         function parseJsonToObject(object) {
             return new Promise(function (resolve, reject) {
                 var news = new News();
@@ -47,6 +56,7 @@ export class NewsPage {
                 news.Title = object.title;
                 news.DateCreate = object.createDate;
                 news.Views = object.views;
+                news.OriginalLink = object.originalLink;
                 if (news != undefined) {
                     return resolve(news);
                 }
@@ -55,8 +65,14 @@ export class NewsPage {
         }
     }
 
-    loadHomePage() {
+    loadHomePage2() {
         this.navCtrl.push(HomePage);
+    }
+
+    gotoNews2(Id) {
+        this.navCtrl.push(NewsPage, {
+            "NewsId": Id
+        });
     }
 
 }

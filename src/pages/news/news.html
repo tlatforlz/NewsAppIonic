@@ -2,7 +2,7 @@
   <ion-navbar hideBackButton="true">
     <ion-grid style="background-color: #eb6060">
       <ion-row>
-        <ion-col col-3 (click)='loadHomePage()'>
+        <ion-col col-3 (click)='loadHomePage2()'>
           <div>
             <a id='idHomePage'>
               <img src='assets/imgs/homepage.png'>
@@ -37,14 +37,24 @@
 
 <ion-content>
   <div class='detail o_h'>
-    <div class="date1">-Theo
-      <a target="_blank" rel="nofollow" href="http://ttvn.vn" style="color:#999;">Trí Thức Trẻ</a> | 16:48 04/11/2017</div>
-    <h1>{{NewsDetail?.Title}}</h1>
+    <div class="date1">Theo
+      <a target="_blank" rel="nofollow" href="{{NewsDetail?.OriginalLink}}" style="color:#999;">{{NewsDetail?.Author}}</a> | {{NewsDetail?.DateCreate |date: 'yyyy-mm-dd HH:mm' }}</div>
+    <!-- <h1>{{NewsDetail?.Title}}</h1> -->
     <div class="detailct">
-
       <div class="clearfix adv-box" id="adm-slot">
         <div innerHTML="{{NewsDetail?.Content}}"></div>
       </div>
     </div>
+  </div>
+
+  <div class="news2 new2lq o_h">
+    <div class="new2lqt fl">
+      <p>Tin liên quan</p>
+    </div>
+    <a *ngFor='let news of NewsFriend' title="{{news?.Title}}" (click)='gotoNews2(news?.Id)' class="li">
+      <img alt="{{news?.Title}}" src="{{news?.Image}}">
+      <span class="title">{{news?.Title}}
+      </span>
+    </a>
   </div>
 </ion-content>
