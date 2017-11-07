@@ -3,6 +3,8 @@ import { NavController } from 'ionic-angular';
 import { NewsService } from '../../app/services/news.service';
 import { NewsPage } from '../news/news';
 import { CategoriesPage } from '../categories/categories';
+import { HotPage } from '../hot/hot';
+
 class News {
   Id: String;
   Title: String;
@@ -42,6 +44,9 @@ export class HomePage {
   }
 
 
+  loadHot() {
+    this.navCtrl.push(HotPage);
+  }
 
   loadHomePage() {
     window.location.reload()

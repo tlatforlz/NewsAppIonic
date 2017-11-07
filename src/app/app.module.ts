@@ -8,14 +8,15 @@ import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
 import { NewsPage } from '../pages/news/news';
 import { CategoriesPage } from '../pages/categories/categories';
-
+import { HotPage } from '../pages/hot/hot';
 
 @NgModule({
   declarations: [
     MyApp,
     HomePage,
     NewsPage,
-    CategoriesPage
+    CategoriesPage,
+    HotPage
   ],
   imports: [
     BrowserModule,
@@ -27,7 +28,8 @@ import { CategoriesPage } from '../pages/categories/categories';
     MyApp,
     HomePage,
     NewsPage,
-    CategoriesPage
+    CategoriesPage,
+    HotPage
   ],
   providers: [
     StatusBar,

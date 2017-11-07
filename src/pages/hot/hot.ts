@@ -3,8 +3,7 @@ import { NavController } from 'ionic-angular';
 import { NewsService } from '../../app/services/news.service';
 import { NewsPage } from '../news/news';
 import { HomePage } from '../home/home';
-import { HotPage } from '../hot/hot';
-
+import { CategoriesPage } from '../categories/categories';
 class News {
     Id: String;
     Title: String;
@@ -14,16 +13,14 @@ class News {
     Image: String;
     DateCreate: String;
 }
-@Component({
-    selector: 'categories',
-    templateUrl: 'categories.html',
-    styles: ['categories.scss']
-})
 
-export class CategoriesPage {
+@Component({
+    selector: 'hot',
+    templateUrl: 'hot.html',
+    styles: ['hot.scss']
+})
+export class HotPage {
     public Top: any[] = [];
-    public Top4: any[] = [];
-    public First: any;
     public parseJsonToObject(object) {
         return new Promise(function (resolve, reject) {
             var news = new News();
@@ -41,11 +38,15 @@ export class CategoriesPage {
         })
     }
     constructor(public navCtrl: NavController, private NewsService: NewsService) {
+
     }
 
-
     loadHot() {
-        this.navCtrl.push(HotPage);
+        window.location.reload();
+    }
+
+    loadNew() {
+        this.navCtrl.push(CategoriesPage);
     }
 
     loadHomePage() {
@@ -58,48 +59,10 @@ export class CategoriesPage {
             "NewsId": Id
         });
     }
-    loadNew() {
-        window.location.reload();
-    }
     readMore(length) {
         this.NewsService.getReadMore(length).subscribe(res => {
             var list = res.news;
             this.Top = [];
-            console.log(list);
-            list.forEach(w => {
-                this.parseJsonToObject(w).then(s => {
-                    if (s != undefined) {
-                        this.Top.push(s);
-                    }
-                })
-            })
-        });
-    }
-
-    ngOnInit() {
-        this.NewsService.getTop1().subscribe(res => {
-            var list = res.news;
-            list.forEach(w => {
-                this.parseJsonToObject(w).then(s => {
-                    if (s != undefined)
-                        this.First = s;
-                })
-            })
-        });
-
-        this.NewsService.getTop4().subscribe(res => {
-            var list = res.news;
-            list.forEach(w => {
-                this.parseJsonToObject(w).then(s => {
-                    if (s != undefined) {
-                        this.Top4.push(s);
-                    }
-                })
-            })
-        });
-
-        this.NewsService.getTop().subscribe(res => {
-            var list = res.news;
             console.log(list);
             list.forEach(w => {
                 this.parseJsonToObject(w).then(s => {

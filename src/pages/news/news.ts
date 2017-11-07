@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { IonicPage, NavParams, NavController, ViewController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { NewsService } from '../../app/services/news.service';
+import { HotPage } from '../hot/hot';
+import { CategoriesPage } from '../categories/categories';
 
 
 class News {
@@ -74,5 +76,10 @@ export class NewsPage {
             "NewsId": Id
         });
     }
-
+    loadHot() {
+        this.navCtrl.push(HotPage);
+    }
+    loadNew() {
+        this.navCtrl.push(CategoriesPage);
+    }
 }
