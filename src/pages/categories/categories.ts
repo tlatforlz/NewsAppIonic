@@ -4,6 +4,7 @@ import { NewsService } from '../../app/services/news.service';
 import { NewsPage } from '../news/news';
 import { HomePage } from '../home/home';
 import { HotPage } from '../hot/hot';
+import { SearchPage } from '../search/search';
 
 class News {
     Id: String;
@@ -14,16 +15,14 @@ class News {
     Image: String;
     DateCreate: String;
 }
+
 @Component({
     selector: 'categories',
     templateUrl: 'categories.html',
     styles: ['categories.scss']
 })
-
 export class CategoriesPage {
     public Top: any[] = [];
-    public Top4: any[] = [];
-    public First: any;
     public parseJsonToObject(object) {
         return new Promise(function (resolve, reject) {
             var news = new News();
@@ -41,8 +40,29 @@ export class CategoriesPage {
         })
     }
     constructor(public navCtrl: NavController, private NewsService: NewsService) {
+
     }
 
+    ngOnInit() {
+        //getCategories
+        this.NewsService.getCategories(15).subscribe(res => {
+            var list = res.news;
+            console.log(list);
+            list.forEach(w => {
+                this.parseJsonToObject(w).then(s => {
+                    if (s != undefined) {
+                        this.Top.push(s);
+                    }
+                })
+            })
+        });
+    }
+    loadSearch() {
+        this.navCtrl.push(SearchPage);
+    }
+    loadNew() {
+        // window.location.reload();
+    }
 
     loadHot() {
         this.navCtrl.push(HotPage);
@@ -58,48 +78,10 @@ export class CategoriesPage {
             "NewsId": Id
         });
     }
-    loadNew() {
-        window.location.reload();
-    }
     readMore(length) {
-        this.NewsService.getReadMore(length).subscribe(res => {
+        this.NewsService.getCategories(length).subscribe(res => {
             var list = res.news;
             this.Top = [];
-            console.log(list);
-            list.forEach(w => {
-                this.parseJsonToObject(w).then(s => {
-                    if (s != undefined) {
-                        this.Top.push(s);
-                    }
-                })
-            })
-        });
-    }
-
-    ngOnInit() {
-        this.NewsService.getTop1().subscribe(res => {
-            var list = res.news;
-            list.forEach(w => {
-                this.parseJsonToObject(w).then(s => {
-                    if (s != undefined)
-                        this.First = s;
-                })
-            })
-        });
-
-        this.NewsService.getTop4().subscribe(res => {
-            var list = res.news;
-            list.forEach(w => {
-                this.parseJsonToObject(w).then(s => {
-                    if (s != undefined) {
-                        this.Top4.push(s);
-                    }
-                })
-            })
-        });
-
-        this.NewsService.getTop().subscribe(res => {
-            var list = res.news;
             console.log(list);
             list.forEach(w => {
                 this.parseJsonToObject(w).then(s => {

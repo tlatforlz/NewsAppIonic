@@ -4,6 +4,7 @@ import { NewsService } from '../../app/services/news.service';
 import { NewsPage } from '../news/news';
 import { CategoriesPage } from '../categories/categories';
 import { HotPage } from '../hot/hot';
+import { SearchPage } from '../search/search';
 
 class News {
   Id: String;
@@ -43,7 +44,9 @@ export class HomePage {
   constructor(public navCtrl: NavController, private NewsService: NewsService) {
   }
 
-
+  loadSearch() {
+    this.navCtrl.push(SearchPage);
+  }
   loadHot() {
     this.navCtrl.push(HotPage);
   }

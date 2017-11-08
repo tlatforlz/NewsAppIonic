@@ -4,6 +4,8 @@ import { NewsService } from '../../app/services/news.service';
 import { NewsPage } from '../news/news';
 import { HomePage } from '../home/home';
 import { CategoriesPage } from '../categories/categories';
+import { SearchPage } from '../search/search';
+
 class News {
     Id: String;
     Title: String;
@@ -41,8 +43,25 @@ export class HotPage {
 
     }
 
+    ngOnInit() {
+        //getCategories
+        this.NewsService.getListNews(15).subscribe(res => {
+            var list = res.news;
+            console.log(list);
+            list.forEach(w => {
+                this.parseJsonToObject(w).then(s => {
+                    if (s != undefined) {
+                        this.Top.push(s);
+                    }
+                })
+            })
+        });
+    }
+    loadSearch() {
+        this.navCtrl.push(SearchPage);
+    }
     loadHot() {
-        window.location.reload();
+        // window.location.reload();
     }
 
     loadNew() {
@@ -60,7 +79,7 @@ export class HotPage {
         });
     }
     readMore(length) {
-        this.NewsService.getReadMore(length).subscribe(res => {
+        this.NewsService.getListNews(length).subscribe(res => {
             var list = res.news;
             this.Top = [];
             console.log(list);

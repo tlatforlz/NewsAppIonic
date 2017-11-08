@@ -7,15 +7,10 @@ import 'rxjs/Rx'
 export class NewsService {
     http: any;
     baseUrl: String;
-    Top: any;
-    TopCategories: any;
-    TinTucNews: any;
-    ListNewsCategories: any;
-    ListSearch: any;
 
     constructor(http: Http) {
         this.http = http;
-        this.baseUrl = "http://192.168.4.110:8001/api/";
+        this.baseUrl = "http://192.168.4.111:8001/api/";
     }
 
     getTop() {
@@ -46,12 +41,15 @@ export class NewsService {
         return this.http.get(this.baseUrl + "news/getNews/getNewsHomePageTop/" + limit)
             .map(res => res.json());
     }
-    getTopCategories(catename, limit) {
 
+    getCategories(limit) {
+        return this.http.get(this.baseUrl + "news/getNews/getNewsHot/" + limit)
+            .map(res => res.json());
     }
 
-    getListNewsCategories(catename) {
-
+    getListNews(limit) {
+        return this.http.get(this.baseUrl + "news/getNews/getNewsNew/" + limit)
+            .map(res => res.json());
     }
 
     getListSearch(seach) {

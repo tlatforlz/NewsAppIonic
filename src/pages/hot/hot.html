@@ -36,30 +36,6 @@
 </ion-header>
 
 <ion-content>
-  <div class="main-host-new">
-    <div class="news_hot" id='hotfirstnew' (click)='gotoNews(First?.Id)'>
-      <a title="{{First?.Title}}">
-        <img alt="{{First?.Title}}" class="lazy loaded" src='{{First?.Image}}' data-src="{{First?.Image}}" title="{{First?.Title}}"
-        />
-      </a>
-      <h2>{{First?.Title}}</h2>
-    </div>
-
-    <div class="news_hot2">
-      <ul>
-
-        <li class="fl" *ngFor='let news of Top4' (click)='gotoNews(news?.Id)'>
-          <a>
-            <img alt="{{news?.Image}}" src="{{news?.Image}}" title="{{news?.Title}}">
-            <span class="txt_0" style="height: 68px;">
-              <h3>{{news?.Title}}</h3>
-            </span>
-          </a>
-        </li>
-      </ul>
-    </div>
-
-  </div>
   <ul id="list" class="news">
     <li class="article" data-uid="" *ngFor='let news of Top'>
       <a title="" class="li" (click)='gotoNews(news?.Id)'>

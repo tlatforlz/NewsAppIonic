@@ -9,7 +9,7 @@
             </a>
           </div>
         </ion-col>
-        <ion-col col-3>
+        <ion-col col-3 (click)='loadNew()'>
           <div class='nav-bar-item'>
             <a>
               <img src='assets/imgs/new.png'>
@@ -18,14 +18,14 @@
             <span>Mới</span>
           </div>
         </ion-col>
-        <ion-col col-3>
+        <ion-col col-3 (click)='loadHot()'>
           <div class='nav-bar-item'>
             <img src='assets/imgs/hot.png'>
             <br/>
             <span>Hot</span>
           </div>
         </ion-col>
-        <ion-col col-3>
+        <ion-col col-3 (click)='loadSearch()'>
           <div class='nav-bar-item'>
             <img src='assets/imgs/search.png'>
           </div>
