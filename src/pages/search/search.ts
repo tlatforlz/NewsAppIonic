@@ -23,6 +23,7 @@ class News {
 export class SearchPage {
     public searchKey: string = '';
     public toggled: boolean = false;
+    public showIs: boolean = false;
     public Top: any[] = [];
     public Length: any = 0;
     public parseJsonToObject(object) {
@@ -43,19 +44,27 @@ export class SearchPage {
     }
     constructor(public navCtrl: NavController, private NewsService: NewsService) {
         this.toggled = false;
+        this.showIs = false;
     }
 
     search() {
-        this.NewsService.getListSearch(this.searchKey, 0).subscribe(res => {
-            var list = res.news;
-            list.forEach(w => {
-                this.parseJsonToObject(w).then(s => {
-                    if (s != undefined) {
-                        this.Top.push(s);
-                    }
-                })
-            });
-        });
+        this.NewsService.getListSearch(this.searchKey, 0).subscribe(
+            res => {
+                var list = res.news;
+                console.log(list.length)
+                if (list.length == 0) {
+                    this.showIs = true;
+                }
+                list.forEach(w => {
+                    this.parseJsonToObject(w).then(s => {
+                        if (s != undefined) {
+                            this.Top.push(s);
+                        }
+                    })
+                });
+            }, err => {
+                this.showIs = true;
+            })
 
         //getListSearchAll
         this.NewsService.getListSearchAll(this.searchKey).subscribe(res => {
@@ -73,6 +82,7 @@ export class SearchPage {
     cancel() {
         this.Top = [];
         this.searchKey = '';
+        this.showIs = false;
         this.toggled = false;
     }
 

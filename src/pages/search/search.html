@@ -41,7 +41,7 @@
     <button id='searchButton' (click)='search()'>Search</button>
     <button id='cancelButton' (click)='cancel()'>Cancel</button>
   </div>
-
+  <h3 *ngIf="showIs">Không có tin tức phù hợp</h3>
   <ul id="list" class="news">
     <li class="article" data-uid="" *ngFor='let news of Top'>
       <a title="" class="li" (click)='gotoNews(news?.Id)'>
