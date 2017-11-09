@@ -17,11 +17,14 @@ class News {
 
 @Component({
     selector: 'search',
-    templateUrl: 'search.html'
+    templateUrl: 'search.html',
+    styles: ['news.scss']
 })
 export class SearchPage {
-
+    public searchKey: string = '';
+    public toggled: boolean = false;
     public Top: any[] = [];
+    public Length: any = 0;
     public parseJsonToObject(object) {
         return new Promise(function (resolve, reject) {
             var news = new News();
@@ -39,8 +42,40 @@ export class SearchPage {
         })
     }
     constructor(public navCtrl: NavController, private NewsService: NewsService) {
+        this.toggled = false;
+    }
+
+    search() {
+        this.NewsService.getListSearch(this.searchKey, 0).subscribe(res => {
+            var list = res.news;
+            list.forEach(w => {
+                this.parseJsonToObject(w).then(s => {
+                    if (s != undefined) {
+                        this.Top.push(s);
+                    }
+                })
+            });
+        });
+
+        //getListSearchAll
+        this.NewsService.getListSearchAll(this.searchKey).subscribe(res => {
+            this.Length = res.news;
+            console.log(this.Top.length);
+            console.log(this.Length);
+            if (this.Top.length < this.Length) {
+                console.log(this.Top.length);
+                this.toggled = true;
+            }
+        });
+
 
     }
+    cancel() {
+        this.Top = [];
+        this.searchKey = '';
+        this.toggled = false;
+    }
+
     loadSearch() {
         // window.location.reload();
     }
@@ -64,7 +99,7 @@ export class SearchPage {
         });
     }
     readMore(length) {
-        this.NewsService.getReadMore(length).subscribe(res => {
+        this.NewsService.getListSearch(this.searchKey, length).subscribe(res => {
             var list = res.news;
             this.Top = [];
             console.log(list);
@@ -75,6 +110,10 @@ export class SearchPage {
                     }
                 })
             })
+            console.log(list.length);
+            if (list.length == this.Length) {
+                this.toggled = false;
+            }
         });
     }
 

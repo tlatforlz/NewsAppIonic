@@ -10,7 +10,7 @@ export class NewsService {
 
     constructor(http: Http) {
         this.http = http;
-        this.baseUrl = "http://192.168.4.111:8001/api/";
+        this.baseUrl = "http://localhost:8001/api/";
     }
 
     getTop() {
@@ -52,7 +52,13 @@ export class NewsService {
             .map(res => res.json());
     }
 
-    getListSearch(seach) {
+    getListSearch(seach, limit) {
+        return this.http.get(this.baseUrl + "news/getNews/getSearch/" + seach + "/" + limit)
+            .map(res => res.json());
+    }
 
+    getListSearchAll(seach) {
+        return this.http.get(this.baseUrl + "news/getNews/getSearchAll/" + seach)
+            .map(res => res.json());
     }
 }
