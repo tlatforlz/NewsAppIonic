@@ -36,30 +36,14 @@
       </ion-row>
     </ion-grid>
   </ion-navbar>
-
 </ion-header>
 
 <ion-content>
   <div [hidden]="isLoadMore">
     <div id="tabLoad" [ngClass]="{loadMore: isOn, closeMore: isDisabled}">
       <ul class="item_tabmn">
-        <li>
-          <a>Tin Tức</a>
-        </li>
-        <li>
-          <a>Trồng Trọt</a>
-        </li>
-        <li>
-          <a>Nông Nghiệp</a>
-        </li>
-        <li>
-          <a>Chăn Nuôi</a>
-        </li>
-        <li>
-          <a>Thủy Sản</a>
-        </li>
-        <li>
-          <a>Chuyện Nhà Nông</a>
+        <li *ngFor='let cate of Categories'>
+          <a (click)='loadCategory(cate?._id)'>{{cate?.name}}</a>
         </li>
       </ul>
     </div>

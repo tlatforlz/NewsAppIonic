@@ -23,6 +23,13 @@ class News {
 })
 export class CategoriesPage {
     public Top: any[] = [];
+    isOn = true;
+    search = true;
+    isDisabled = false;
+    Categories: any[] = [];
+    public search: any = true;
+    public isLoadMore: any = true;
+    public visibleState = 'visible';
     public parseJsonToObject(object) {
         return new Promise(function (resolve, reject) {
             var news = new News();
@@ -40,9 +47,35 @@ export class CategoriesPage {
         })
     }
     constructor(public navCtrl: NavController, private NewsService: NewsService) {
-
+        this.search = true;
+        this.NewsService.getAllCategory().subscribe(res => {
+            console.log(res);
+            this.Categories = res.Archives;
+        })
     }
 
+
+    loadCategory(id) {
+        this.navCtrl.push(CategoriesPage, {
+            "NewsId": id
+        });
+    }
+
+    loadSearchBar() {
+        this.isLoadMore = true;
+        this.search = !this.search;
+    }
+
+    loadMore() {
+        this.isLoadMore = !this.isLoadMore;
+        if (this.isLoadMore == true) {
+            this.isDisabled = true;
+            this.isOn = false;
+        } else {
+            this.isDisabled = false;
+            this.isOn = true;
+        }
+    }
     ngOnInit() {
         //getCategories
         this.NewsService.getCategories(15).subscribe(res => {

@@ -13,6 +13,10 @@ export class NewsService {
         this.baseUrl = "http://192.168.1.94:8001/api/";
     }
 
+    getAllCategory() {
+        return this.http.get(this.baseUrl + "archive")
+            .map(res => res.json());
+    }
     getTop() {
         return this.http.get(this.baseUrl + "news/getNews/getNewsHomePageTop")
             .map(res => res.json());
