@@ -5,7 +5,6 @@ import { NewsPage } from '../news/news';
 import { CategoriesPage } from '../categories/categories';
 import { HotPage } from '../hot/hot';
 import { SearchPage } from '../search/search';
-
 class News {
   Id: String;
   Title: String;
@@ -26,6 +25,10 @@ export class HomePage {
   public Top4: any[] = [];
   public First: any;
   public search: any = true;
+  public isLoadMore: any = true;
+  public visibleState = 'visible';
+  isOn = true;
+  isDisabled = false;
   public parseJsonToObject(object) {
     return new Promise(function (resolve, reject) {
       var news = new News();
@@ -43,10 +46,22 @@ export class HomePage {
     })
   }
   constructor(public navCtrl: NavController, private NewsService: NewsService) {
-    this.search = true;
   }
 
+  loadMore() {
+    this.isLoadMore = !this.isLoadMore;
+    if (this.isLoadMore == true) {
+      this.isDisabled = true;
+      this.isOn = false;
+    } else {
+      this.isDisabled = false;
+      this.isOn = true;
+    }
+  }
+
+
   loadSearchBar() {
+    this.isLoadMore = true;
     this.search = !this.search;
   }
 

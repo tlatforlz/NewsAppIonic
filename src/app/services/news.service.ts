@@ -10,7 +10,7 @@ export class NewsService {
 
     constructor(http: Http) {
         this.http = http;
-        this.baseUrl = "http://127.0.0.1:8001/api/";
+        this.baseUrl = "http://192.168.1.94:8001/api/";
     }
 
     getTop() {

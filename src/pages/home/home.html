@@ -15,18 +15,18 @@
               <img src='assets/imgs/new.png'>
             </a>
             <br>
-            <span>Mới</span>
-          </div>
-        </ion-col>
-        <ion-col [hidden]="!search" style="border-right: solid 1px #e55254;" col-3 (click)='loadHot()'>
-          <div class='nav-bar-item'>
-            <img src='assets/imgs/hot.png'>
-            <br/>
             <span>Hot</span>
           </div>
         </ion-col>
+        <ion-col [hidden]="!search" style="border-right: solid 1px #e55254;" col-3 (click)='loadMore()'>
+          <div class='nav-bar-item'>
+            <img src='assets/imgs/hot.png'>
+            <br/>
+            <span>More</span>
+          </div>
+        </ion-col>
         <ion-col col-9 [hidden]="search">
-          <input class="input-search">
+          <input class="input-search" placeholder="Enter key to search">
         </ion-col>
         <ion-col col-3 (click)='loadSearchBar()'>
           <div class='nav-bar-item'>
@@ -40,7 +40,31 @@
 </ion-header>
 
 <ion-content>
-  <div class="main-host-new">
+  <div [hidden]="isLoadMore">
+    <div id="tabLoad" [ngClass]="{loadMore: isOn, closeMore: isDisabled}">
+      <ul class="item_tabmn">
+        <li>
+          <a>Tin Tức</a>
+        </li>
+        <li>
+          <a>Trồng Trọt</a>
+        </li>
+        <li>
+          <a>Nông Nghiệp</a>
+        </li>
+        <li>
+          <a>Chăn Nuôi</a>
+        </li>
+        <li>
+          <a>Thủy Sản</a>
+        </li>
+        <li>
+          <a>Chuyện Nhà Nông</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="main-host-new" [ngClass]="{closeMore: isDisabled}">
     <div class="news_hot" id='hotfirstnew' (click)='gotoNews(First?.Id)'>
       <a title="{{First?.Title}}">
         <img alt="{{First?.Title}}" class="lazy loaded" src='{{First?.Image}}' data-src="{{First?.Image}}" title="{{First?.Title}}"
@@ -51,7 +75,6 @@
 
     <div class="news_hot2">
       <ul>
-
         <li class="fl" *ngFor='let news of Top4' (click)='gotoNews(news?.Id)'>
           <a>
             <img alt="{{news?.Image}}" src="{{news?.Image}}" title="{{news?.Title}}">
