@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavParams, NavController, ViewController } from 'ionic-angular';
+import { NavParams, NavController } from 'ionic-angular';
 import { HomePage } from '../home/home';
 import { NewsService } from '../../app/services/news.service';
 import { HotPage } from '../hot/hot';
@@ -26,14 +26,14 @@ export class NewsPage {
     public NewsId: any;
     public NewsDetail: any;
     public NewsFriend: any[] = [];
-    public search: any = false;
+    public search: any = true;
     public isLoadMore: any = true;
     public visibleState = 'visible';
     isOn = true;
     isDisabled = false;
     Categories: any[] = [];
     constructor(public navCtrl: NavController, public navParams: NavParams, private NewsService: NewsService) {
-        this.search = false;
+        this.search = true;
         this.NewsId = navParams.get("NewsId");
         this.NewsService.getAllCategory().subscribe(res => {
             this.Categories = res.Archives;

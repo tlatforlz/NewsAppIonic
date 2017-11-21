@@ -10,9 +10,13 @@ export class NewsService {
 
     constructor(http: Http) {
         this.http = http;
-        this.baseUrl = "http://192.168.4.108:8002/api/";
+        this.baseUrl = "http://localhost:8002/api/";
     }
 
+    getCateNew(Id, limit) {
+        return this.http.get(this.baseUrl + "archive/getAllNewsByCate/" + Id + "/" + limit)
+            .map(res => res.json());
+    }
     getAllCategory() {
         return this.http.get(this.baseUrl + "archive")
             .map(res => res.json());

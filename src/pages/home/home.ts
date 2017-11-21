@@ -4,8 +4,6 @@ import { NewsService } from '../../app/services/news.service';
 import { NewsPage } from '../news/news';
 import { CategoriesPage } from '../categories/categories';
 import { HotPage } from '../hot/hot';
-import { SearchPage } from '../search/search';
-import { take } from 'rxjs/operator/take';
 class News {
   Id: String;
   Title: String;
@@ -29,7 +27,7 @@ export class HomePage {
   public isLoadMore: any = true;
   public visibleState = 'visible';
   isOn = true;
-  isDisabled = false; 
+  isDisabled = false;
   Categories: any[] = [];
   public parseJsonToObject(object) {
     return new Promise(function (resolve, reject) {

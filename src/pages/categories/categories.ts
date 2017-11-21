@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavParams, NavController } from 'ionic-angular';
 import { NewsService } from '../../app/services/news.service';
 import { NewsPage } from '../news/news';
 import { HomePage } from '../home/home';
@@ -26,6 +26,7 @@ export class CategoriesPage {
     isOn = true;
     isDisabled = false;
     Categories: any[] = [];
+    ArchiveId: any;
     public search: any = true;
     public isLoadMore: any = true;
     public visibleState = 'visible';
@@ -45,8 +46,9 @@ export class CategoriesPage {
             return reject(null);
         })
     }
-    constructor(public navCtrl: NavController, private NewsService: NewsService) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, private NewsService: NewsService) {
         this.search = true;
+        this.ArchiveId = navParams.get("NewsId");
         this.NewsService.getAllCategory().subscribe(res => {
             console.log(res);
             this.Categories = res.Archives;
@@ -68,7 +70,7 @@ export class CategoriesPage {
     loadMore() {
         this.isLoadMore = !this.isLoadMore;
         if (this.isLoadMore == true) {
-            this.isDisabled = true; 
+            this.isDisabled = true;
             this.isOn = false;
         } else {
             this.isDisabled = false;
@@ -77,8 +79,9 @@ export class CategoriesPage {
     }
     ngOnInit() {
         //getCategories
-        this.NewsService.getCategories(15).subscribe(res => {
-            var list = res.news;
+        this.NewsService.getCateNew(this.ArchiveId, 15).subscribe(res => {
+            console.log(res);
+            var list = res.listNews;
             console.log(list);
             list.forEach(w => {
                 this.parseJsonToObject(w).then(s => {
@@ -110,8 +113,8 @@ export class CategoriesPage {
         });
     }
     readMore(length) {
-        this.NewsService.getCategories(length).subscribe(res => {
-            var list = res.news;
+        this.NewsService.getCateNew(this.ArchiveId, length + 15).subscribe(res => {
+            var list = res.listNews;
             this.Top = [];
             console.log(list);
             list.forEach(w => {
