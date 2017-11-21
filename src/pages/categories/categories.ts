@@ -24,7 +24,6 @@ class News {
 export class CategoriesPage {
     public Top: any[] = [];
     isOn = true;
-    search = true;
     isDisabled = false;
     Categories: any[] = [];
     public search: any = true;
@@ -69,7 +68,7 @@ export class CategoriesPage {
     loadMore() {
         this.isLoadMore = !this.isLoadMore;
         if (this.isLoadMore == true) {
-            this.isDisabled = true;
+            this.isDisabled = true; 
             this.isOn = false;
         } else {
             this.isDisabled = false;
@@ -94,11 +93,10 @@ export class CategoriesPage {
         this.navCtrl.push(SearchPage);
     }
     loadNew() {
-        // window.location.reload();
+        this.navCtrl.push(HotPage);
     }
 
     loadHot() {
-        this.navCtrl.push(HotPage);
     }
 
     loadHomePage() {

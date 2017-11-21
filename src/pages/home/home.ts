@@ -29,7 +29,7 @@ export class HomePage {
   public isLoadMore: any = true;
   public visibleState = 'visible';
   isOn = true;
-  isDisabled = false;
+  isDisabled = false; 
   Categories: any[] = [];
   public parseJsonToObject(object) {
     return new Promise(function (resolve, reject) {
@@ -76,7 +76,7 @@ export class HomePage {
     this.search = !this.search;
   }
 
-  loadHot() {
+  loadNew() {
     this.navCtrl.push(HotPage);
   }
 

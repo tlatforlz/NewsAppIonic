@@ -2,30 +2,33 @@
   <ion-navbar hideBackButton="true">
     <ion-grid style="background-color: #cf1218">
       <ion-row>
-        <ion-col style="border-right: solid 1px #e55254;" col-3 (click)='loadHomePage()'>
+        <ion-col [hidden]="!search" style="border-right: solid 1px #e55254;" col-3 (click)='loadHomePage()'>
           <div>
             <a id='idHomePage'>
               <img src='assets/imgs/homepage.png'>
             </a>
           </div>
         </ion-col>
-        <ion-col style="border-right: solid 1px #e55254;" col-3 (click)='loadNew()'>
+        <ion-col [hidden]="!search" style="border-right: solid 1px #e55254;" col-3 (click)='loadNew()'>
           <div class='nav-bar-item'>
             <a>
               <img src='assets/imgs/new.png'>
             </a>
             <br>
-            <span>Mới</span>
+            <span>New</span>
           </div>
         </ion-col>
-        <ion-col style="border-right: solid 1px #e55254;" col-3 (click)='loadHot()'>
+        <ion-col [hidden]="!search" style="border-right: solid 1px #e55254;" col-3 (click)='loadMore()'>
           <div class='nav-bar-item'>
             <img src='assets/imgs/hot.png'>
             <br/>
-            <span>Hot</span>
+            <span>More</span>
           </div>
         </ion-col>
-        <ion-col col-3 (click)='loadSearch()'>
+        <ion-col col-9 [hidden]="search">
+          <input class="input-search" placeholder="Enter key to search">
+        </ion-col>
+        <ion-col col-3 (click)='loadSearchBar()'>
           <div class='nav-bar-item'>
             <img src='assets/imgs/search.png'>
           </div>
@@ -36,6 +39,15 @@
 </ion-header>
 
 <ion-content>
+  <div [hidden]="isLoadMore">
+    <div id="tabLoad" [ngClass]="{loadMore: isOn, closeMore: isDisabled}">
+      <ul class="item_tabmn">
+        <li *ngFor='let cate of Categories'>
+          <a (click)='loadCategory(cate?._id)'>{{cate?.name}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
   <ul id="list" class="news">
     <li class="article" data-uid="" *ngFor='let news of Top'>
       <a title="" class="li" (click)='gotoNews(news?.Id)'>
