@@ -1,15 +1,15 @@
 <ion-header>
   <ion-navbar hideBackButton="true">
-    <ion-grid style="background-color: #eb6060">
+    <ion-grid style="background-color: #cf1218">
       <ion-row>
-        <ion-col col-3 (click)='loadHomePage()'>
+        <ion-col [hidden]="!search" style="border-right: solid 1px #e55254;" col-3 (click)='loadHomePage()'>
           <div>
             <a id='idHomePage'>
               <img src='assets/imgs/homepage.png'>
             </a>
           </div>
         </ion-col>
-        <ion-col col-3 (click)='loadNew()'>
+        <ion-col [hidden]="!search" style="border-right: solid 1px #e55254;" col-3 (click)='loadNew()'>
           <div class='nav-bar-item'>
             <a>
               <img src='assets/imgs/new.png'>
@@ -18,14 +18,17 @@
             <span>Mới</span>
           </div>
         </ion-col>
-        <ion-col col-3 (click)='loadHot()'>
+        <ion-col [hidden]="!search" style="border-right: solid 1px #e55254;" col-3 (click)='loadHot()'>
           <div class='nav-bar-item'>
             <img src='assets/imgs/hot.png'>
             <br/>
             <span>Hot</span>
           </div>
         </ion-col>
-        <ion-col col-3 (click)='loadSearch()'>
+        <ion-col col-9 [hidden]="search">
+          <input class="input-search">
+        </ion-col>
+        <ion-col col-3 (click)='loadSearchBar()'>
           <div class='nav-bar-item'>
             <img src='assets/imgs/search.png'>
           </div>
@@ -33,6 +36,7 @@
       </ion-row>
     </ion-grid>
   </ion-navbar>
+
 </ion-header>
 
 <ion-content>

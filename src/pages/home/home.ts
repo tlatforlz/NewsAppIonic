@@ -25,6 +25,7 @@ export class HomePage {
   public Top: any[] = [];
   public Top4: any[] = [];
   public First: any;
+  public search: any = true;
   public parseJsonToObject(object) {
     return new Promise(function (resolve, reject) {
       var news = new News();
@@ -42,6 +43,11 @@ export class HomePage {
     })
   }
   constructor(public navCtrl: NavController, private NewsService: NewsService) {
+    this.search = true;
+  }
+
+  loadSearchBar() {
+    this.search = !this.search;
   }
 
   loadSearch() {
@@ -56,7 +62,6 @@ export class HomePage {
   }
 
   gotoNews(Id) {
-    console.log(Id);
     this.navCtrl.push(NewsPage, {
       "NewsId": Id
     });
