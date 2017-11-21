@@ -30,6 +30,7 @@ export class CategoriesPage {
     public search: any = true;
     public isLoadMore: any = true;
     public visibleState = 'visible';
+    searchKey;
     public parseJsonToObject(object) {
         return new Promise(function (resolve, reject) {
             var news = new News();
@@ -55,7 +56,12 @@ export class CategoriesPage {
         })
     }
 
-
+    handleSearch() {
+        console.log(this.searchKey);
+        this.navCtrl.push(SearchPage, {
+            "searchKey": this.searchKey
+        });
+    }
     loadCategory(id) {
         this.navCtrl.push(CategoriesPage, {
             "NewsId": id

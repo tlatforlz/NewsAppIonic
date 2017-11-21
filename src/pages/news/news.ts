@@ -32,6 +32,7 @@ export class NewsPage {
     isOn = true;
     isDisabled = false;
     Categories: any[] = [];
+    searchKey;
     constructor(public navCtrl: NavController, public navParams: NavParams, private NewsService: NewsService) {
         this.search = true;
         this.NewsId = navParams.get("NewsId");
@@ -73,7 +74,12 @@ export class NewsPage {
             });
         }
     }
-
+    handleSearch() {
+        console.log(this.searchKey);
+        this.navCtrl.push(SearchPage, {
+            "searchKey": this.searchKey
+        });
+    }
     loadMore() {
         this.isLoadMore = !this.isLoadMore;
         if (this.isLoadMore == true) {

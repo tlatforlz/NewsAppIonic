@@ -26,7 +26,7 @@
           </div>
         </ion-col>
         <ion-col col-9 [hidden]="search">
-          <input class="input-search" placeholder="Enter key to search">
+          <input class="input-search" placeholder="Enter key to search" [(ngModel)]="searchKey" (keyup.enter)="handleSearch()">
         </ion-col>
         <ion-col col-3 (click)='loadSearchBar()'>
           <div class='nav-bar-item'>

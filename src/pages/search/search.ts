@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { NavParams, NavController } from 'ionic-angular';
 import { NewsService } from '../../app/services/news.service';
 import { NewsPage } from '../news/news';
 import { HomePage } from '../home/home';
@@ -26,6 +26,12 @@ export class SearchPage {
     public showIs: boolean = false;
     public Top: any[] = [];
     public Length: any = 0;
+    public search: any = true;
+    public isLoadMore: any = true;
+    public visibleState = 'visible';
+    isOn = true;
+    isDisabled = false;
+    Categories: any[] = [];
     public parseJsonToObject(object) {
         return new Promise(function (resolve, reject) {
             var news = new News();
@@ -42,14 +48,17 @@ export class SearchPage {
             return reject(null);
         })
     }
-    constructor(public navCtrl: NavController, private NewsService: NewsService) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, private NewsService: NewsService) {
         this.toggled = false;
         this.showIs = false;
-    }
-
-    search() {
+        this.search = true;
+        this.NewsService.getAllCategory().subscribe(res => {
+            this.Categories = res.Archives;
+        })
+        this.searchKey = navParams.get("searchKey");
         this.NewsService.getListSearch(this.searchKey, 0).subscribe(
             res => {
+                console.log(res);
                 var list = res.news;
                 console.log(list.length)
                 if (list.length == 0) {
@@ -76,9 +85,38 @@ export class SearchPage {
                 this.toggled = true;
             }
         });
-
-
     }
+
+
+    handleSearch() {
+        console.log(this.searchKey);
+        this.navCtrl.push(SearchPage, {
+            "searchKey": this.searchKey
+        });
+    }
+    loadMore() {
+        this.isLoadMore = !this.isLoadMore;
+        if (this.isLoadMore == true) {
+            this.isDisabled = true;
+            this.isOn = false;
+        } else {
+            this.isDisabled = false;
+            this.isOn = true;
+        }
+    }
+
+    loadCategory(id) {
+        this.navCtrl.push(CategoriesPage, {
+            "NewsId": id
+        });
+    }
+
+    loadSearchBar() {
+        this.isLoadMore = true;
+        this.search = !this.search;
+    }
+
+
     cancel() {
         this.Top = [];
         this.searchKey = '';

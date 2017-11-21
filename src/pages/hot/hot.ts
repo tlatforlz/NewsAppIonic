@@ -29,6 +29,7 @@ export class HotPage {
     isOn = true;
     isDisabled = false;
     Categories: any[] = [];
+    searchKey;
     public parseJsonToObject(object) {
         return new Promise(function (resolve, reject) {
             var news = new News();
@@ -66,7 +67,12 @@ export class HotPage {
             })
         });
     }
-
+    handleSearch() {
+        console.log(this.searchKey);
+        this.navCtrl.push(SearchPage, {
+            "searchKey": this.searchKey
+        });
+    }
     loadMore() {
         this.isLoadMore = !this.isLoadMore;
         if (this.isLoadMore == true) {

@@ -4,6 +4,7 @@ import { NewsService } from '../../app/services/news.service';
 import { NewsPage } from '../news/news';
 import { CategoriesPage } from '../categories/categories';
 import { HotPage } from '../hot/hot';
+import { SearchPage } from '../search/search';
 class News {
   Id: String;
   Title: String;
@@ -29,6 +30,7 @@ export class HomePage {
   isOn = true;
   isDisabled = false;
   Categories: any[] = [];
+  searchKey;
   public parseJsonToObject(object) {
     return new Promise(function (resolve, reject) {
       var news = new News();
@@ -51,7 +53,12 @@ export class HomePage {
       this.Categories = res.Archives;
     })
   }
-
+  handleSearch() {
+    console.log(this.searchKey);
+    this.navCtrl.push(SearchPage, {
+      "searchKey": this.searchKey
+    });
+  }
   loadMore() {
     this.isLoadMore = !this.isLoadMore;
     if (this.isLoadMore == true) {
@@ -87,6 +94,7 @@ export class HomePage {
       "NewsId": Id
     });
   }
+
 
   readMore(length) {
     this.NewsService.getReadMore(length).subscribe(res => {
