@@ -26,17 +26,24 @@ export class NewsPage {
     public NewsId: any;
     public NewsDetail: any;
     public NewsFriend: any[] = [];
+    public search: any = false;
+    public isLoadMore: any = true;
+    public visibleState = 'visible';
+    isOn = true;
+    isDisabled = false;
+    Categories: any[] = [];
     constructor(public navCtrl: NavController, public navParams: NavParams, private NewsService: NewsService) {
+        this.search = false;
         this.NewsId = navParams.get("NewsId");
-        console.log(this.NewsId);
+        this.NewsService.getAllCategory().subscribe(res => {
+            this.Categories = res.Archives;
+        })
     }
 
     ngOnInit() {
-        console.log(this.NewsId);
         this.NewsService.getNews(this.NewsId).subscribe(res => {
             parseJsonToObject(res.news).then(w => {
                 this.NewsDetail = w;
-                console.log(this.NewsDetail);
             });
         });
 
@@ -67,6 +74,29 @@ export class NewsPage {
         }
     }
 
+    loadMore() {
+        this.isLoadMore = !this.isLoadMore;
+        if (this.isLoadMore == true) {
+            this.isDisabled = true;
+            this.isOn = false;
+        } else {
+            this.isDisabled = false;
+            this.isOn = true;
+        }
+    }
+
+    loadCategory(id) {
+        this.navCtrl.push(CategoriesPage, {
+            "NewsId": id
+        });
+    }
+
+    loadSearchBar() {
+        this.isLoadMore = true;
+        this.search = !this.search;
+    }
+
+
     loadHomePage2() {
         this.navCtrl.push(HomePage);
     }
@@ -76,15 +106,12 @@ export class NewsPage {
             "NewsId": Id
         });
     }
-    loadHot() {
-        this.navCtrl.push(HotPage);
-    }
+
     loadNew() {
-        this.navCtrl.push(CategoriesPage);
+        this.navCtrl.push(HotPage);
     }
 
     loadSearch() {
         this.navCtrl.push(SearchPage);
-
     }
 }

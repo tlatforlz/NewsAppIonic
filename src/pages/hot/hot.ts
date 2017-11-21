@@ -23,6 +23,12 @@ class News {
 })
 export class HotPage {
     public Top: any[] = [];
+    public search: any = true;
+    public isLoadMore: any = true;
+    public visibleState = 'visible';
+    isOn = true;
+    isDisabled = false;
+    Categories: any[] = [];
     public parseJsonToObject(object) {
         return new Promise(function (resolve, reject) {
             var news = new News();
@@ -40,7 +46,10 @@ export class HotPage {
         })
     }
     constructor(public navCtrl: NavController, private NewsService: NewsService) {
-
+        this.search = true;
+        this.NewsService.getAllCategory().subscribe(res => {
+            this.Categories = res.Archives;
+        })
     }
 
     ngOnInit() {
@@ -57,6 +66,29 @@ export class HotPage {
             })
         });
     }
+
+    loadMore() {
+        this.isLoadMore = !this.isLoadMore;
+        if (this.isLoadMore == true) {
+            this.isDisabled = true;
+            this.isOn = false;
+        } else {
+            this.isDisabled = false;
+            this.isOn = true;
+        }
+    }
+
+    loadCategory(id) {
+        this.navCtrl.push(CategoriesPage, {
+            "NewsId": id
+        });
+    }
+
+    loadSearchBar() {
+        this.isLoadMore = true;
+        this.search = !this.search;
+    }
+
     loadSearch() {
         this.navCtrl.push(SearchPage);
     }

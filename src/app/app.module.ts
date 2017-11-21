@@ -10,6 +10,7 @@ import { NewsPage } from '../pages/news/news';
 import { CategoriesPage } from '../pages/categories/categories';
 import { HotPage } from '../pages/hot/hot';
 import { SearchPage } from '../pages/search/search';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { SearchPage } from '../pages/search/search';
   imports: [
     BrowserModule,
     HttpModule,
+    BrowserAnimationsModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],

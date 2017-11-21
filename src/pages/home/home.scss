@@ -25,7 +25,7 @@ ion-col:hover {
 ion-col {
   border-width: 0.5px;
   border-style: solid;
-  border-color: #e00d0d;
+  border-color: #cf1218;
 }
 
 .news_hot h2 {
@@ -102,6 +102,7 @@ img {
   background: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAICAYAAADED76LAAAAE0lEQVQY02NkYGA4w4AHMI4MBQCfCQZp2z0+rgAAAABJRU5ErkJggg==) repeat scroll 0 0 transparent;
   display: block;
   width: 100%;
+  height: 150px;
 }
 
 .news_hot2 span {
@@ -114,8 +115,8 @@ img {
 
 .news_hot2 ul li a h3,
 .news_hot2 ul li a h2 {
-  margin-top: 0px;
-  font-size: 12px;
+  margin-top: 8px;
+  font-size: 13px;
   font-family: Arial;
   font-weight: bold;
   color: #433333;
@@ -181,4 +182,70 @@ img {
   background: #ededed;
   padding: 6px 10px;
   margin: 15px 0;
+}
+
+.input-search {
+  width: 100%;
+  height: 50px;
+  padding-right: 20px;
+  padding-left: 10px;
+  font-size: 15px;
+  border-radius: 5px;
+}
+
+.input-search {
+  -webkit-animation: fadeInLeft 1s;
+  animation: fadeInLeft 1s;
+}
+
+.loadMore {
+  -webkit-animation: fadeInDown 0.5s;
+  animation: fadeInDown 0.5s;
+  width: 100%;
+  height: auto;
+  background-color: #de5f5f;
+}
+
+.closeMore {
+  -webkit-animation: fadeInTop 0.5s;
+  animation: fadeInTop 0.5s;
+}
+
+.main-host-new {
+  -webkit-animation: fadeInUp 1s;
+  animation: fadeInUp 1s;
+}
+
+.toolbar-ios {
+  padding: 0px !important;
+}
+
+.scroll-content {
+  margin-top: 70ppx !important;
+}
+
+.item_tabmn {
+  text-align: center;
+}
+
+.item_tabmn li a {
+  background: none repeat scroll 0 0 #F0F0F0;
+  border-radius: 5px 5px 5px 5px;
+  color: #003f72;
+  display: block;
+  font: 15px/43px arial;
+  height: 43px;
+  text-align: center;
+  width: 146px;
+  margin-top: 10px;
+}
+
+.item_tabmn li {
+  margin: 0 0 9px 9px;
+  display: inline-block;
+}
+
+.item_tabmn li a:hover {
+  background-color: #cf1218;
+  color: #ebebeb;
 }

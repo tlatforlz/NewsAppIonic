@@ -1,31 +1,34 @@
 <ion-header>
   <ion-navbar hideBackButton="true">
-    <ion-grid style="background-color: #eb6060">
+    <ion-grid style="background-color: #cf1218">
       <ion-row>
-        <ion-col col-3 (click)='loadHomePage2()'>
+        <ion-col [hidden]="!search" style="border-right: solid 1px #e55254;" col-3 (click)='loadHomePage2()'>
           <div>
             <a id='idHomePage'>
               <img src='assets/imgs/homepage.png'>
             </a>
           </div>
         </ion-col>
-        <ion-col col-3 (click)='loadNew()'>
+        <ion-col [hidden]="!search" style="border-right: solid 1px #e55254;" col-3 (click)='loadNew()'>
           <div class='nav-bar-item'>
             <a>
               <img src='assets/imgs/new.png'>
             </a>
             <br>
-            <span>Mới</span>
+            <span>New</span>
           </div>
         </ion-col>
-        <ion-col col-3 (click)='loadHot()'>
+        <ion-col [hidden]="!search" style="border-right: solid 1px #e55254;" col-3 (click)='loadMore()'>
           <div class='nav-bar-item'>
             <img src='assets/imgs/hot.png'>
             <br/>
-            <span>Hot</span>
+            <span>More</span>
           </div>
         </ion-col>
-        <ion-col col-3 (click)='loadSearch()'>
+        <ion-col col-9 [hidden]="search">
+          <input class="input-search" placeholder="Enter key to search">
+        </ion-col>
+        <ion-col col-3 (click)='loadSearchBar()'>
           <div class='nav-bar-item'>
             <img src='assets/imgs/search.png'>
           </div>
@@ -36,6 +39,15 @@
 </ion-header>
 
 <ion-content>
+  <div [hidden]="isLoadMore">
+    <div id="tabLoad" [ngClass]="{loadMore: isOn, closeMore: isDisabled}">
+      <ul class="item_tabmn">
+        <li *ngFor='let cate of Categories'>
+          <a (click)='loadCategory(cate?._id)'>{{cate?.name}}</a>
+        </li>
+      </ul>
+    </div>
+  </div>
   <div class='detail o_h'>
     <div class="date1">Theo
       <a target="_blank" rel="nofollow" href="{{NewsDetail?.OriginalLink}}" style="color:#999;">{{NewsDetail?.Author}}</a> | {{NewsDetail?.DateCreate |date: 'yyyy-mm-dd HH:mm' }}</div>

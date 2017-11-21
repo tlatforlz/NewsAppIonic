@@ -5,7 +5,7 @@ import { NewsPage } from '../news/news';
 import { CategoriesPage } from '../categories/categories';
 import { HotPage } from '../hot/hot';
 import { SearchPage } from '../search/search';
-
+import { take } from 'rxjs/operator/take';
 class News {
   Id: String;
   Title: String;
@@ -25,6 +25,12 @@ export class HomePage {
   public Top: any[] = [];
   public Top4: any[] = [];
   public First: any;
+  public search: any = true;
+  public isLoadMore: any = true;
+  public visibleState = 'visible';
+  isOn = true;
+  isDisabled = false; 
+  Categories: any[] = [];
   public parseJsonToObject(object) {
     return new Promise(function (resolve, reject) {
       var news = new News();
@@ -42,12 +48,35 @@ export class HomePage {
     })
   }
   constructor(public navCtrl: NavController, private NewsService: NewsService) {
+    this.NewsService.getAllCategory().subscribe(res => {
+      console.log(res);
+      this.Categories = res.Archives;
+    })
   }
 
-  loadSearch() {
-    this.navCtrl.push(SearchPage);
+  loadMore() {
+    this.isLoadMore = !this.isLoadMore;
+    if (this.isLoadMore == true) {
+      this.isDisabled = true;
+      this.isOn = false;
+    } else {
+      this.isDisabled = false;
+      this.isOn = true;
+    }
   }
-  loadHot() {
+
+  loadCategory(id) {
+    this.navCtrl.push(CategoriesPage, {
+      "NewsId": id
+    });
+  }
+
+  loadSearchBar() {
+    this.isLoadMore = true;
+    this.search = !this.search;
+  }
+
+  loadNew() {
     this.navCtrl.push(HotPage);
   }
 
@@ -56,14 +85,11 @@ export class HomePage {
   }
 
   gotoNews(Id) {
-    console.log(Id);
     this.navCtrl.push(NewsPage, {
       "NewsId": Id
     });
   }
-  loadNew() {
-    this.navCtrl.push(CategoriesPage);
-  }
+
   readMore(length) {
     this.NewsService.getReadMore(length).subscribe(res => {
       var list = res.news;
