@@ -10,7 +10,7 @@ export class NewsService {
 
     constructor(http: Http) {
         this.http = http;
-        this.baseUrl = "http://localhost:8002/api/";
+        this.baseUrl = "http://192.168.43.215:8002/api/";
     }
 
     getCateNew(Id, limit) {
