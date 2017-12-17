@@ -86,7 +86,10 @@ export class HomePage {
   }
 
   loadHomePage() {
-    window.location.reload()
+    this.NewsService.getAllCategory().subscribe(res => {
+      console.log(res);
+      this.Categories = res.Archives;
+    })
   }
 
   gotoNews(Id) {

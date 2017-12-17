@@ -99,11 +99,15 @@ export class HotPage {
         this.navCtrl.push(SearchPage);
     }
     loadHot() {
-        // window.location.reload();
+        this.NewsService.getAllCategory().subscribe(res => {
+            this.Categories = res.Archives;
+        })
     }
 
     loadNew() {
-        this.navCtrl.push(CategoriesPage);
+        this.NewsService.getAllCategory().subscribe(res => {
+            this.Categories = res.Archives;
+        })
     }
 
     loadHomePage() {

@@ -51,7 +51,6 @@ export class CategoriesPage {
         this.search = true;
         this.ArchiveId = navParams.get("NewsId");
         this.NewsService.getAllCategory().subscribe(res => {
-            console.log(res);
             this.Categories = res.Archives;
         })
     }
